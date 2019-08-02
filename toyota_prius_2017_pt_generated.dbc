@@ -77,7 +77,7 @@ BO_ 36 KINEMATICS: 8 XXX
 BO_ 37 STEER_ANGLE_SENSOR: 8 XXX
  SG_ STEER_ANGLE : 3|12@0- (1.5,0) [-500|500] "deg" XXX
  SG_ STEER_FRACTION : 39|4@0- (0.1,0) [-0.7|0.7] "deg" XXX
- SG_ STEER_RATE : 35|12@0- (1,0) [-2000|2000] "deg/s" XXX
+ SG_ STEER_RATE : 35|12@0- (0.01,0) [-2000|2000] "deg/s" XXX
 
 BO_ 166 BRAKE: 8 XXX
  SG_ BRAKE_AMOUNT : 7|8@0+ (1,0) [0|255] "" XXX
@@ -103,7 +103,6 @@ BO_ 466 PCM_CRUISE: 8 XXX
  SG_ STANDSTILL_ON : 12|1@0+ (1,0) [0|1] "" XXX
  SG_ ACCEL_NET : 23|16@0- (0.001,0) [-20|20] "m/s2" XXX
  SG_ CRUISE_STATE : 55|4@0+ (1,0) [0|15] "" XXX
- SG_ CANCEL_REQ : 49|1@1+ (1,0) [0|1] "" XXX
  SG_ CHECKSUM : 63|8@0+ (1,0) [0|255] "" XXX
 
 BO_ 467 PCM_CRUISE_2: 8 XXX
@@ -129,14 +128,7 @@ BO_ 614 STEERING_IPAS: 8 IPAS
  SG_ SET_ME_X00_1 : 55|8@0+ (1,0) [0|255] "" XXX
  SG_ CHECKSUM : 63|8@0+ (1,0) [0|255] "" XXX
 
-BO_ 643 PRE_COLLISION: 7 XXX
- SG_ COUNTER : 7|8@0+ (1,0) [0|255] "" XXX
- SG_ SET_ME_X00 : 15|8@0+ (1,0) [0|255] "" XXX
- SG_ FORCE : 23|16@0- (2,0) [0|255] "N" XXX
- SG_ BRAKE_STATUS: 39|3@0+ (1,0) [0|255] "" XXX
- SG_ STATE : 36|3@0+ (1,0) [0|255] "" XXX
- SG_ SET_ME_X00_2 : 47|8@0+ (1,0) [0|255] "" XXX
- SG_ CHECKSUM : 55|8@0+ (1,0) [0|255] "" XXX
+BO_ 643 PRE_COLLISION: 8 XXX
 
 BO_ 740 STEERING_LKA: 5 XXX
  SG_ LKA_STATE : 31|8@0+ (1,0) [0|255] "" XXX
@@ -256,7 +248,7 @@ CM_ SG_ 36 ACCEL_Y "unit is tbd";
 CM_ SG_ 36 YAW_RATE "verify";
 CM_ SG_ 36 STEERING_TORQUE "does not seem the steer torque, tbd";
 CM_ SG_ 37 STEER_FRACTION "1/15th of the signal STEER_ANGLE, which is 1.5 deg; note that 0x8 is never set";
-CM_ SG_ 37 STEER_RATE "factor is tbd";
+CM_ SG_ 37 STEER_RATE "factor contributed by zorrobyte";
 CM_ SG_ 466 ACCEL_NET "net acceleration produced by the system, given ACCEL_CMD, road grade and other factors";
 CM_ SG_ 467 SET_SPEED "43 kph are shown as 28mph, so conversion isnt perfect";
 CM_ SG_ 467 LOW_SPEED_LOCKOUT "in low speed lockout, system would always disengage below 28mph";
@@ -287,8 +279,6 @@ VAL_ 466 CRUISE_STATE 8 "active" 7 "standstill" 1 "off";
 VAL_ 467 LOW_SPEED_LOCKOUT 2 "low speed locked" 1 "ok";
 VAL_ 614 STATE 3 "enabled" 1 "disabled";
 VAL_ 614 DIRECTION_CMD 3 "right" 2 "center" 1 "left";
-VAL_ 643 BRAKE_STATUS  0 "normal" 9 "slight_brake" 132 "medium_brake" 140 "strong_brake";
-VAL_ 643 STATE 0 "normal" 1 "enginge_braking" 4 "braking";
 VAL_ 921 CRUISE_CONTROL_STATE 2 "disabled" 11 "hold" 10 "hold_waiting_user_cmd" 6 "enabled" 5 "faulted";
 VAL_ 1042 LDA_ALERT 3 "hold with continuous beep" 2 "LDA unavailable" 1 "hold" 0 "none";
 VAL_ 1042 BARRIERS 3 "both" 2 "right" 1 "left" 0 "none";
